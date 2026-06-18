@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/06/17 00:31:08 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:21:47 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	push(t_stack *dest, t_stack *src, char c, bool print)
 	src->head = src->head->next;
 	temp->next = dest->head;
 	dest->head = temp;
+	src->size--;
+	dest->size++;
 	if (print)
 	{
 		write(1, "p", 1);
@@ -119,6 +121,19 @@ void	reverse_rotate(t_stack *stack, char c, bool print)
 	{
 		write(1, "rr", 2);
 		write(1, &c, 1);
+		write(1, "\n", 1);
+	}
+}
+
+void	rrr(t_stack *stack_a, t_stack *stack_b, bool print)
+{
+	if (!stack_a || !stack_b)
+		return ;
+	reverse_rotate(stack_a, 'a', 0);
+	reverse_rotate(stack_b, 'b', 0);
+	if (print)
+	{
+		write(1, "rrr", 3);
 		write(1, "\n", 1);
 	}
 }

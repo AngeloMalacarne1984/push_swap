@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/06/13 15:49:40 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:41:27 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stdbool.h> // for datatype bool
 # include <limits.h> // INT_MAX, INT_MIN
 # include <stdint.h> // int32_t
+
+typedef struct s_node
+{
+	int				value;
+	int				s_index;
+	struct s_node	*next;
+}	t_node;
 
 typedef struct s_stack
 {
