@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_sort.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/06/23 16:24:33 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/06/23 16:28:39 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack *stack)
+int	integer_sqrt_small(int number)
 {
-	int first = stack->head->value;
-	int second = stack->head->next->value;
-	int third = stack->head->next->next->value;
+int	low;
+int	high;
+int	result;
+int mid;
 
-	if (first > second && second < third && first < third)
-		swap(stack, 'a', 1);
-	else if (first > second && second > third)
+if (number < 0)
+	return -1;
+low = 0;
+high = number;
+result = 0;
+while (low <= high)
+{
+	mid = low + (high - low) / 2;
+	if (mid * mid <= number)
 	{
-		swap(stack, 'a', 1);
-		reverse_rotate(stack, 'a', 1);
+		result = mid;
+		low = mid + 1;
 	}
-	else if (first > second && second < third && first > third)
-		rotate(stack, 'a', 1);
-	else if (first < second && second > third && first < third)
-	{
-		swap(stack, 'a', 1);
-		rotate(stack, 'a', 1);
-	}
-	else if (first < second && second > third && first > third)
-		reverse_rotate(stack, 'a', 1);
+	else
+		high = mid - 1;
+}
+return result;
 }
 
-int	get_min_position(t_stack *stack)
+int	get_min_position(t_stack *stack)// kann man ecvtl loeschen
 {
 	t_node *curr = stack->head;
 	int min_val = curr->value;
@@ -56,7 +58,27 @@ int	get_min_position(t_stack *stack)
 	return (min_pos);
 }
 
-void	move_min_to_top(t_stack *stack, char c)
+int	get_max_index(t_stack *stack)
+{
+	t_node *curr = stack->head;
+	int max_val = -1;
+	int max_pos = 0;
+	int pos = 0;
+
+	while (curr)
+	{
+		if (curr->target_index > max_val)
+		{
+			max_val = curr->target_index;
+			max_pos = pos;
+		}
+		curr = curr->next;
+		pos++;
+	}
+	return (max_pos);
+}
+
+void	move_min_to_top(t_stack *stack, char c)// kann man ecvtl loeschen
 {
 	int min_pos = get_min_position(stack);
 	
@@ -78,16 +100,26 @@ void	move_min_to_top(t_stack *stack, char c)
 	}
 }
 
-void simple_sort(t_stack *stack_a, t_stack *stack_b)
+void	sort_array(int *arr, int size)
 {
-	while (stack_a->size > 3)
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	while (i < size - 1)
 	{
-		move_min_to_top(stack_a, 'a');
-		push(stack_b, stack_a, 'b', 1);
-	}
-	sort_three(stack_a);
-	while (stack_b->size > 0)
-	{
-		push(stack_a, stack_b, 'a', 1);
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
 	}
 }
