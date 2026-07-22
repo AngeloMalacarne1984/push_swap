@@ -12,50 +12,6 @@
 
 #include "push_swap.h"
 
-void	assign_indices(t_stack *stack, int *arr)
-{
-	t_node	*curr;
-	int		i;
-
-	curr = stack->head;
-	while (curr)
-	{
-		i = 0;
-		while (i < stack->size)
-		{
-			if (curr->value == arr[i])
-			{
-				curr->target_index = i;
-				break;
-			}
-			i++;
-		}
-		curr = curr->next;
-	}
-}
-
-void	index_stack(t_stack *stack)
-{
-	int		*arr;
-	int		i;
-	t_node	*curr;
-
-	arr = (int *)malloc(sizeof(int) * stack->size);
-	if (!arr)
-		return;
-	curr = stack->head;
-	i = 0;
-	while (curr)
-	{
-		arr[i] = curr->value;
-		curr = curr->next;
-		i++;
-	}
-	sort_array(arr, stack->size);
-	assign_indices(stack, arr);
-	free(arr);
-}
-
 void	complex_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int i;

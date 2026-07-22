@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/06/23 16:28:39 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/20 15:03:15 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ while (low <= high)
 return result;
 }
 
-int	get_min_position(t_stack *stack)// kann man ecvtl loeschen
+int	get_min_position(t_stack *stack)
 {
 	t_node *curr = stack->head;
 	int min_val = curr->value;

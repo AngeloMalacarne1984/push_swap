@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/06/23 16:24:33 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/20 16:26:59 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,6 @@ void	sort_three(t_stack *stack)
 		reverse_rotate(stack, 'a', 1);
 }
 
-int	get_min_position(t_stack *stack)
-{
-	t_node *curr = stack->head;
-	int min_val = curr->value;
-	int min_pos = 0;
-	int pos = 0;
-
-	while (curr)
-	{
-		if (curr->value < min_val)
-		{
-			min_val = curr->value;
-			min_pos = pos;
-		}
-		curr = curr->next;
-		pos++;
-	}
-	return (min_pos);
-}
-
 void	move_min_to_top(t_stack *stack, char c)
 {
 	int min_pos = get_min_position(stack);
@@ -78,8 +58,13 @@ void	move_min_to_top(t_stack *stack, char c)
 	}
 }
 
-void simple_sort(t_stack *stack_a, t_stack *stack_b)
+void simple_sort(t_stack *stack_a, t_stack *stack_b, t_bench *bench)
 {
+	if (bench->active)
+	{
+		bench->strategy_name = "Simple Sort";
+		bench->complexity = "O(n^2)";
+	}
 	while (stack_a->size > 3)
 	{
 		move_min_to_top(stack_a, 'a');
