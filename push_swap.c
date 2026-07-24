@@ -6,11 +6,13 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:35:47 by mlucka            #+#    #+#             */
-/*   Updated: 2026/07/24 16:25:55 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:12:08 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_bench	*g_bench = NULL;
 
 static int	ft_parse_args(int argc, char **argv, t_stack *stack_a, int *start)
 {
@@ -68,9 +70,6 @@ static void	ft_check_flags(int argc, char **argv, t_bench *bench)
 
 static void	ft_execute_strategy(t_stack *stack_a, t_stack *stack_b, t_bench *bench)
 {
-	int	op_counts[11] = {0};
-	int	total_ops;
-
 	if (bench->strategy_name && ft_strncmp(bench->strategy_name, "Simple Sort", 11) == 0)
 		simple_sort(stack_a, stack_b, bench);
 	else if (bench->strategy_name && ft_strncmp(bench->strategy_name, "Medium Sort", 11) == 0)
@@ -79,8 +78,7 @@ static void	ft_execute_strategy(t_stack *stack_a, t_stack *stack_b, t_bench *ben
 		complex_sort(stack_a, stack_b);
 	else
 		run_adaptive_strategy(&stack_a, &stack_b, bench);
-	total_ops = 0;
-	print_benchmark(stack_a, bench, total_ops, op_counts);
+	print_benchmark(stack_a, bench, bench->total_ops, bench->op_counts);
 }
 
 int	main(int argc, char **argv)
@@ -89,6 +87,7 @@ int	main(int argc, char **argv)
 	t_stack	stack_b;
 	t_bench	bench;
 	int		start;
+	int		i;
 
 	if (argc < 2)
 		return (0);
@@ -97,6 +96,11 @@ int	main(int argc, char **argv)
 	bench.active = 0;
 	bench.strategy_name = NULL;
 	bench.complexity = NULL;
+	bench.total_ops = 0;
+	i = 0;
+	while (i < 11)
+		bench.op_counts[i++] = 0;
+	g_bench = &bench;
 	ft_check_flags(argc, argv, &bench);
 	if (!ft_parse_args(argc, argv, &stack_a, &start))
 		return (1);

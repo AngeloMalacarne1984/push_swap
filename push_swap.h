@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/24 16:27:20 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:10:57 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,21 @@ typedef struct s_stack
 
 typedef struct s_bench
 {
-	int	active;
+	int		active;
 	char	*strategy_name;
 	char	*complexity;
+	int		total_ops;
+	int		op_counts[11];
 }	t_bench;
 
 // push_swap
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
 
 // Operations_one
 void	swap(t_stack *stack, char c, int print);
 void	ss(t_stack *stack_a, t_stack *stack_b, int print);
 void	push(t_stack *dest, t_stack *src, char c, int print);
+void	ft_handle_rotate_print(char c);
 
 // Operations_two
 void	rotate(t_stack *stack, char c, int print);
@@ -97,5 +100,8 @@ int		count_split(char **split);
 // stack
 void	build_stack(int argc, t_stack *stack, char **argv);
 void	add_back(t_stack *stack, t_node *new_node);
+
+// Globaler Benchmark-Zeiger für die Operationen
+extern t_bench	*g_bench;
 
 #endif

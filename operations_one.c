@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/20 15:17:12 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 17:11:00 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ void	swap(t_stack *stack, char c, int print)
 		write(1, "s", 1);
 		write(1, &c, 1);
 		write(1, "\n", 1);
+		if (g_bench && g_bench->active)
+		{
+			if (c == 'a')
+				g_bench->op_counts[0]++;
+			else if (c == 'b')
+				g_bench->op_counts[1]++;
+			g_bench->total_ops++;
+		}
 	}
 }
 
@@ -41,6 +49,11 @@ void	ss(t_stack *stack_a, t_stack *stack_b, int print)
 	{
 		write(1, "ss", 2);
 		write(1, "\n", 1);
+		if (g_bench && g_bench->active)
+		{
+			g_bench->op_counts[2]++;
+			g_bench->total_ops++;
+		}
 	}
 }
 
@@ -61,5 +74,28 @@ void	push(t_stack *dest, t_stack *src, char c, int print)
 		write(1, "p", 1);
 		write(1, &c, 1);
 		write(1, "\n", 1);
+		if (g_bench && g_bench->active)
+		{
+			if (c == 'a')
+				g_bench->op_counts[3]++;
+			else if (c == 'b')
+				g_bench->op_counts[4]++;
+			g_bench->total_ops++;
+		}
 	}
+}
+
+void	ft_handle_rotate_print(char c)
+{
+	if (g_bench && g_bench->active)
+	{
+		if (c == 'b')
+			g_bench->op_counts[6]++;
+		else
+			g_bench->op_counts[5]++;
+		g_bench->total_ops++;
+	}
+	write(1, "r", 1);
+	write(1, &c, 1);
+	write(1, "\n", 1);
 }
