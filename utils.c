@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/20 15:03:15 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:36:42 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	get_max_index(t_stack *stack)
 	return (max_pos);
 }
 
-void	move_min_to_top(t_stack *stack, char c)// kann man ecvtl loeschen
+void	move_min_to_top(t_stack *stack, char c)
 {
 	int min_pos = get_min_position(stack);
 	

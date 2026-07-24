@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 03:59:29 by mlucka            #+#    #+#             */
-/*   Updated: 2026/07/21 15:13:45 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:26:07 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,24 @@ void	index_stack(t_stack *stack)
 	sort_array(arr, stack->size);
 	assign_indices(stack, arr);
 	free(arr);
+}
+
+int	ft_parse_single_string(char *str, t_stack *stack_a)
+{
+	char	**split;
+	int		count;
+
+	split = ft_split(str, ' ');
+	if (!split)
+		return (0);
+	count = count_split(split);
+	if (!check_arguments(count, split) || !check_duplicates(count, split))
+	{
+		write(2, "Error\n", 6);
+		free_split(split);
+		return (0);
+	}
+	build_stack(count, stack_a, split);
+	free_split(split);
+	return (1);
 }

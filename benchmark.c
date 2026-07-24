@@ -6,27 +6,13 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/21 15:57:24 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:19:49 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//void	ft_putstr_fd(char *s, int fd)
-//{
-//	int	i;
-//
-//	i = 0;
-//	if (!s)
-//		return ;
-//	while (s[i])
-//	{
-//		write(fd, &s[i], 1);
-//		i++;
-//	}
-//}
-
-static void	print_disorder_and_strategy(t_stack *stack_a, t_bench *bench)
+static void	print_disorder_value(t_stack *stack_a)
 {
 	double	disorder;
 	long	int_part;
@@ -42,10 +28,21 @@ static void	print_disorder_and_strategy(t_stack *stack_a, t_bench *bench)
 		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(dec_part, 2);
 	ft_putstr_fd("%\n", 2);
+}
+
+static void	print_disorder_and_strategy(t_stack *stack_a, t_bench *bench)
+{
+	print_disorder_value(stack_a);
 	ft_putstr_fd("Strategy: ", 2);
-	ft_putstr_fd(bench->strategy_name, 2);
+	if (bench->strategy_name)
+		ft_putstr_fd(bench->strategy_name, 2);
+	else
+		ft_putstr_fd("Adaptive", 2);
 	ft_putstr_fd(" (Complexity: ", 2);
-	ft_putstr_fd(bench->complexity, 2);
+	if (bench->complexity)
+		ft_putstr_fd(bench->complexity, 2);
+	else
+		ft_putstr_fd("Unknown", 2);
 	ft_putstr_fd(")\n", 2);
 }
 
@@ -54,10 +51,17 @@ static void	print_operation_counts(int *op_counts)
 	char	*names[11];
 	int		i;
 
-	names[0] = "sa: "; names[1] = "sb: "; names[2] = "ss: ";
-	names[3] = "pa: "; names[4] = "pb: "; names[5] = "ra: ";
-	names[6] = "rb: "; names[7] = "rr: "; names[8] = "rra: ";
-	names[9] = "rrb: "; names[10] = "rrr: ";
+	names[0] = "sa: ";
+	names[1] = "sb: ";
+	names[2] = "ss: ";
+	names[3] = "pa: ";
+	names[4] = "pb: ";
+	names[5] = "ra: ";
+	names[6] = "rb: ";
+	names[7] = "rr: ";
+	names[8] = "rra: ";
+	names[9] = "rrb: ";
+	names[10] = "rrr: ";
 	i = 0;
 	while (i < 11)
 	{

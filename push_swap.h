@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/21 15:57:29 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 16:27:20 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_bench
 }	t_bench;
 
 // push_swap
-int	main(int argc, char **argv); // brauch ich das?
+int	main(int argc, char **argv);
 
 // Operations_one
 void	swap(t_stack *stack, char c, int print);
@@ -61,14 +61,14 @@ void	move_min_to_top(t_stack *stack, char c);
 void	sort_array(int *arr, int size);
 
 // helpers
-int	is_number(char *str);
+int		is_number(char *str);
 t_node	*create_node(int value);
 void	assign_indices(t_stack *stack, int *arr);
 void	index_stack(t_stack *stack);
+int		ft_parse_single_string(char *str, t_stack *stack_a);
 
 // simple_sort
 void	sort_three(t_stack *stack);
-void	move_min_to_top(t_stack *stack, char c);
 void	simple_sort(t_stack *stack_a, t_stack *stack_b, t_bench *bench);
 
 // medium_sort

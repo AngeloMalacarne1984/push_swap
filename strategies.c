@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/21 16:00:18 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 15:31:08 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,20 @@ void	run_adaptive_strategy(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	disorder = calculate_disorder(*stack_a);
 	if (disorder < 0.2)
 	{
-		bench->strategy_name = "Simple Sort";
+		bench->strategy_name = "Adaptive";
 		bench->complexity = "O(n^2)";
-		simple_sort(stack_a, stack_b, bench);
+		simple_sort(*stack_a, *stack_b, bench);
 	}
 	else if (disorder < 0.5)
 	{
-		bench->strategy_name = "Medium Sort (Chunks)";
+		bench->strategy_name = "Adaptive";
 		bench->complexity = "O(n*sqrt(n))";
-		medium_sort(stack_a, stack_b, bench);
+		medium_sort(*stack_a, *stack_b, bench);
 	}
 	else
 	{
-		bench->strategy_name = "Complex Sort (Radix)";
+		bench->strategy_name = "Adaptive";
 		bench->complexity = "O(n log n)";
-		complex_sort(stack_a, stack_b);
+		complex_sort(*stack_a, *stack_b);
 	}
 }

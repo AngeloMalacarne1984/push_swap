@@ -6,7 +6,7 @@
 /*   By: amalacar <amalacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:57:15 by amalacar          #+#    #+#             */
-/*   Updated: 2026/07/20 16:26:59 by amalacar         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:36:37 by amalacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,6 @@ void	sort_three(t_stack *stack)
 	}
 	else if (first < second && second > third && first > third)
 		reverse_rotate(stack, 'a', 1);
-}
-
-void	move_min_to_top(t_stack *stack, char c)
-{
-	int min_pos = get_min_position(stack);
-	
-	if (min_pos <= stack->size / 2)
-	{
-		while (min_pos > 0)
-		{
-			rotate(stack, c, 1);
-			min_pos--;
-		}
-	}
-	else
-	{
-		while (min_pos < stack->size)
-		{
-			reverse_rotate(stack, c, 1);
-			min_pos++;
-		}
-	}
 }
 
 void simple_sort(t_stack *stack_a, t_stack *stack_b, t_bench *bench)
